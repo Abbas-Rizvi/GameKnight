@@ -17,10 +17,10 @@ Apply the data management principles that you learned during the course to a rea
 ## Phase 1: Project Proposal
 1. [The Proposal](Proposal/Proposal.pdf)
 ## Phase 2: Project Design
-2. [The Project Design](Project\Design)
-   * [Design Diagrams](Project\Design/Design\Diagrams)
-      - [ER Diagram](Project\Design/Design\Diagrams/ER_Diagram.pdf)
-      - [Relationl Schema Diagram](Project\Design/Design\Diagrams/Relational_Schema.pdf)
+2. [The Project Design](https://github.com/JadEletry/GameKnight/tree/main/Project%20Design)
+   * [Design Diagrams](https://github.com/JadEletry/GameKnight/tree/main/Project%20Design/Design%20Diagrams)
+      - [ER Diagram](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/Design%20Diagrams/ER_Diagram.pdf)
+      - [Relationl Schema Diagram](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/Design%20Diagrams/Relational_Schema.pdf)
    * [SQL Code](Project\Design/gameKnight.txt)
   
    * [Sample Data]()
