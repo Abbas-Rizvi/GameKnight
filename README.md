@@ -8,7 +8,7 @@ Data Management Final Project - Fall 2021
 - Daniel LoPresti  - 100748818
 
 ## Objective
-Apply the data management principles that you learned during the course to a real life application. The group project is animportant part of this course since it enables you to gain experience and apply concepts andtechnologies and utilizesmanyof the concepts presented in class.
+Apply the data management principles that you learned during the course to a real life application. The group project is an important part of this course since it enables you to gain experience and apply concepts and technologies and utilize many of the concepts presented in class.
 
 ## Deliverables
  - Project report per phase (one for the team) 
