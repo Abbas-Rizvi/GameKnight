@@ -15,9 +15,9 @@ Apply the data management principles that you learned during the course to a rea
  - Project presentation and final report (one for the team, with contribution from all members)
 
 ## Phase 1: Project Proposal
-1. [The Proposal]()
+1. [The Proposal](Proposal/Proposal.pdf)
 ## Phase 2: Project Design
-2. [The Project Design](Proposal/Proposal.pdf)
+2. [The Project Design]()
    * [Design Diagrams]()
       - [ER Diagram]()
       - [Relationl Schema Diagram]()
