@@ -3,9 +3,9 @@
 ## View 1
 > Compute a join of at least three tables.
 
-```
--- Outputs a game with it's ID, Name, Developer, and Rating.
-CREATE OR REPLACE VIEW gamedevrating
+```SQL
+/* Outputs a game with it's ID, Name, Developer, and Rating. */
+CREATE OR REPLACE VIEW gamedevrating AS
 AS SELECT game.GameID, game.Name, developers.Fname as 'Developer', rating.Rating
 FROM game
 INNER JOIN developers
@@ -18,9 +18,9 @@ ORDER BY Developer;
 ## View 2
 > Use nested queries with the ANY or ALL operator and uses a GROUP BY clause.
 
-```
--- Outputs all fighting games from Nintendo
-CREATE OR REPLACE VIEW nintendoftg
+```SQL
+/* Outputs all fighting games from Nintendo */
+CREATE OR REPLACE VIEW nintendoftg AS
 SELECT game.GameID, game.Name, developers.Fname AS 'Developer', genre.GName AS 'Genre'  
 FROM game 
 INNER JOIN developers 
@@ -38,8 +38,8 @@ GROUP BY GameID;
 
 > Use a correlated nested query
 
-```
---Outputs all games that have a rating greater than the average
+```SQL
+/* Outputs all games that have a rating greater than the average */
 CREATE OR REPLACE VIEW topratedgames AS
 SELECT * FROM(
 SELECT game.GameID, game.Name, rating.Rating
@@ -54,9 +54,9 @@ FROM gamerating);
 
 ## View 4
 > Use a Full Join
-```
---Outputs all games, with multiplayer information
-CREATE OR REPLACE VIEW gamesplayercount
+```SQL
+/* Outputs all games, with multiplayer information */
+CREATE OR REPLACE VIEW gamesplayercount AS
 SELECT * FROM game 
 LEFT JOIN multiplayer 
 ON game.GameID = multiplayer.GameID 
@@ -73,7 +73,7 @@ ON game.GameID = multiplayer.GameID;
 
 ## View 6
 > Show all games and their rating
-```
+```SQL
 CREATE OR REPLACE VIEW gamerating AS
 SELECT game.GameID, game.Name, rating.Rating
 FROM game
