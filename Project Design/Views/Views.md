@@ -55,7 +55,7 @@ FROM gamerating);
 ## View 4
 > Use a Full Join
 ```SQL
-/* Outputs all games, with multiplayer information */
+/* Outputs all games, with multiplayer information, equivalent to FULL JOIN as MariaDB doesn't like it */
 CREATE OR REPLACE VIEW gamesplayercount AS
 SELECT * FROM game 
 LEFT JOIN multiplayer 
