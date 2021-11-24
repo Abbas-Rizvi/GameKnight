@@ -9,13 +9,14 @@ CREATE TABLE `game_knight`.`game` (
 
 ALTER TABLE `game_knight`.`game` 
 ADD COLUMN `PlatformID` INT NULL AFTER `Price`,
-ADD COLUMN `DeveloperID` INT NULL AFTER `PlatformID`;
+ADD COLUMN `DeveloperID` INT NULL AFTER `PlatformID`
+ADD COLUMN `Rating` VARCHAR(45) NULL AFTER `DeveloperID`;
 
 ALTER TABLE `game_knight`.`multiplayer` 
 CHANGE COLUMN `Mode` `Mode` VARCHAR(45) NULL ,
 DROP PRIMARY KEY,
 ADD PRIMARY KEY (`Players`);
-;
+
 
 CREATE TABLE `game_knight`.`rating` (
   `RateNo` INT NOT NULL,
@@ -25,16 +26,15 @@ CREATE TABLE `game_knight`.`rating` (
 
 CREATE TABLE `game_knight`.`genre` (
   `GName` VARCHAR(45) NOT NULL,
-  `Genre/Tag` VARCHAR(45) NULL,
+  `GTag` VARCHAR(45) NULL,
   PRIMARY KEY (`GName`));
 
 CREATE TABLE `game_knight`.`multiplayer` (
   `Players` INT NOT NULL,
-  `Mode` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Players`, `Mode`));
+  `Mode` VARCHAR(45) NULL,
+  `GameID` INT NOT NULL,
+  PRIMARY KEY (`GameID`));
 
-ALTER TABLE `game_knight`.`multiplayer` 
-ADD COLUMN `GameID` INT NULL AFTER `Mode`;
 
 CREATE TABLE `game_knight`.`developers` (
   `DeveloperID` INT NOT NULL,
@@ -43,3 +43,8 @@ CREATE TABLE `game_knight`.`developers` (
   `Sex` VARCHAR(45) NULL,
   `Age` VARCHAR(45) NULL,
   PRIMARY KEY (`DeveloperID`));
+
+CREATE TABLE `game_knight`.`platforms` (
+  `PlatformID` INT NOT NULL, 
+  `PlatformName` VARCHAR(45) NULL,
+  PRIMARY KEY(`PlatformID`))l
