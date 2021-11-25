@@ -9,6 +9,9 @@ pip = "*"
 mysqlclient = "*"
 djangorestframework = "*"
 httpie = "*"
+drf-generators = "*"
+requests = "*"
+python-decouple = "*"
 
 [dev-packages]
 

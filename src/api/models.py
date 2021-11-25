@@ -78,15 +78,15 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Developers(models.Model):
-    developerid = models.IntegerField(db_column='DeveloperID', primary_key=True)  # Field name made lowercase.
-    fname = models.CharField(db_column='Fname', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    lname = models.CharField(db_column='Lname', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    sex = models.CharField(db_column='Sex', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    age = models.CharField(db_column='Age', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    dev_id = models.AutoField(primary_key=True)
+    rawg_dev_id = models.IntegerField()
+    dev_name = models.CharField(max_length=45, blank=True, null=True)
+    dev_img = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'developers'
+        unique_together = (('dev_id', 'rawg_dev_id'),)
 
 
 class DjangoAdminLog(models.Model):
@@ -135,52 +135,71 @@ class DjangoSession(models.Model):
 
 
 class Game(models.Model):
-    gameid = models.IntegerField(db_column='GameID', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    releasedate = models.CharField(db_column='ReleaseDate', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    price = models.DecimalField(db_column='Price', max_digits=3, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    platformid = models.ForeignKey('Platform', models.DO_NOTHING, db_column='PlatformID', blank=True, null=True)  # Field name made lowercase.
-    developerid = models.ForeignKey(Developers, models.DO_NOTHING, db_column='DeveloperID', blank=True, null=True)  # Field name made lowercase.
-    gname = models.ForeignKey('Genre', models.DO_NOTHING, db_column='GName', blank=True, null=True)  # Field name made lowercase.
+    game_id = models.AutoField(primary_key=True)
+    rawg_gameid = models.IntegerField()
+    fk_dev = models.ForeignKey(Developers, models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=45, blank=True, null=True)
+    release_date = models.CharField(max_length=45, blank=True, null=True)
+    game_img = models.CharField(max_length=2555, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    metacritic_score = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'game'
+        unique_together = (('game_id', 'rawg_gameid'),)
 
 
 class Genre(models.Model):
-    gname = models.CharField(db_column='GName', primary_key=True, max_length=45)  # Field name made lowercase.
-    genre_tag = models.CharField(db_column='Genre/Tag', max_length=45, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    genre_id = models.AutoField(primary_key=True)
+    rawg_genre_id = models.IntegerField()
+    genre_name = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'genre'
+        unique_together = (('genre_id', 'rawg_genre_id'),)
 
 
-class Multiplayer(models.Model):
-    players = models.IntegerField(db_column='Players', primary_key=True)  # Field name made lowercase.
-    mode = models.CharField(db_column='Mode', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    gameid = models.IntegerField(db_column='GameID', blank=True, null=True)  # Field name made lowercase.
+class GenreAssociated(models.Model):
+    ga_id = models.AutoField(primary_key=True)
+    fk_game = models.ForeignKey(Game, models.DO_NOTHING)
+    fk_genre = models.ForeignKey(Genre, models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'multiplayer'
+        db_table = 'genre_associated'
+
+
+class HasTags(models.Model):
+    ht_id = models.AutoField(primary_key=True)
+    rawg_tag_id = models.IntegerField()
+    fk_game = models.ForeignKey(Game, models.DO_NOTHING)
+    tag = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'has_tags'
+        unique_together = (('ht_id', 'rawg_tag_id'),)
 
 
 class Platform(models.Model):
-    platformid = models.IntegerField(db_column='PlatformID', primary_key=True)  # Field name made lowercase.
-    system = models.CharField(db_column='System', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    plat_id = models.AutoField(primary_key=True)
+    rawg_platform_id = models.IntegerField()
+    name = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'platform'
+        unique_together = (('plat_id', 'rawg_platform_id'),)
 
 
-class Rating(models.Model):
-    rateno = models.IntegerField(db_column='RateNo', primary_key=True)  # Field name made lowercase.
-    gameid = models.ForeignKey(Game, models.DO_NOTHING, db_column='GameID', blank=True, null=True)  # Field name made lowercase.
-    rating = models.DecimalField(db_column='Rating', max_digits=3, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
+class PlayedOn(models.Model):
+    played_on_id = models.AutoField(primary_key=True)
+    fk_plat = models.ForeignKey(Platform, models.DO_NOTHING)
+    fk_game = models.ForeignKey(Game, models.DO_NOTHING)
+    release_date = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'rating'
+        db_table = 'played_on'
