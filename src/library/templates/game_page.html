@@ -10,23 +10,55 @@
 
 <div id="head" class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid">
-    <h3>Release Date:</h3>
-    <p class="">{{ game.release_date }}</p>
 
-    <h3>Metacritic Rating:</h3>
-    <p class="">{{ game.metacritic_score }}</p>
+      <!-- ---------- release --------- -->
+      <div class="container-fluid ">
+        <h4>Release Date:<span style="color:black"> {{ game.release_date }}</span> </h4>
+      </div>
 
-    <h4>Tags:</h4>
-    <p class="">
-    {% for tag in tags %}
-      <li style="text-transform:uppercase">{{ tag.tag }}</li>
-    {% endfor %}
-    </p>
+      <!-- ----------meta --------- -->
+      <div class="container-fluid py-3">
+      <h4>Metacritic Rating:<span style="color:green"> {{ game.metacritic_score }}</span> </h4>
+      </div>
 
-    <h3>Description:</h3>
-    <p class="">{{ game.description }}</p>
-    <!-- <button class="btn btn-primary btn-lg" type="button">Example button</button> -->
-    </div>
+
+      <!-- ----------Tags --------- -->
+      <div class="container-fluid py-3">
+        <h3>Tags</h3>
+          {% for tag in tags %}
+            <div style="font-size: large;" class="badge badge-primary">{{ tag.tag }}</div>
+            {% endfor %}
+         </div>
+
+      <!-- ----------GENRES --------- -->
+      <div class="container-fluid py-3">
+        <h3>Genres</h3>
+          {% for val in genres.values %}
+            <div style="font-size: large;" class="badge badge-info">{{ val }}</div>
+          {% endfor %}
+      </div>
+  
+      <!-- ---------- PLATFORMS --------- -->
+        <div class="container-fluid py-3">
+          <h3>Platforms</h3>
+            {% for val in platforms.values %}
+              <div style="font-size: large;" class="badge badge-secondary">{{ val }}</div>
+            {% endfor %}
+        </div>     
+
+      <!-- ---------- DESCRIPTION --------- -->
+      <div class="container-fluid py-3">
+        <h3>Description:</h3>
+        <p class="">{{ game.description }}</p>
+      </div>
+
+      </div>
+
+
+
+    
+  
+  </div>
 </div>
 
 
