@@ -1,0 +1,13 @@
+html{
+    margin: auto;
+    max-width: 900px;
+}
+
+td img{
+    width: 100px;
+    height: 50px;
+}
+
+#logo {
+    height: 50%;
+}

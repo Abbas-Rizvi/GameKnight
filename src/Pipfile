@@ -12,6 +12,8 @@ httpie = "*"
 drf-generators = "*"
 requests = "*"
 python-decouple = "*"
+django-bootstrap-static = "*"
+django-jquery = "*"
 
 [dev-packages]
 

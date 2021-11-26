@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'savegame.apps.SavegameConfig',
     'api.apps.ApiConfig',
+    'library.apps.LibraryConfig',
     'rest_framework',
     'drf_generators',
+    'bootstrap',
+    'fontawesome',
+    'jquery',
 ]
 
 MIDDLEWARE = [
@@ -140,5 +144,5 @@ RAWG_KEY= config('RAWG_KEY',default='')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 15
+    'PAGE_SIZE': 99999
 }
