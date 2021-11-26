@@ -22,8 +22,6 @@ Apply the data management principles that you learned during the course to a rea
       - [ER Diagram](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/Design%20Diagrams/ER_Diagram.pdf)
       - [Relationl Schema Diagram](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/Design%20Diagrams/Schema.png)
    * [Sample Data](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/Sample%20Data.pdf)
- 
    * [System Views](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/Views/Views.md)
-
    * [SQL Code](https://github.com/JadEletry/GameKnight/blob/main/Project%20Design/gameKnight.txt)
 ## Phase 3: Project Final Report
