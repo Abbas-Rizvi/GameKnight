@@ -8,6 +8,14 @@ from decouple import config
 def rawg(request,gameID):
     json_response = requests.get(('https://api.rawg.io/api/games/' + str(gameID)),params={'key':config('RAWG_KEY')}).json()
     
+    id= json_response['id']
+
+    try: 
+        Game.objects.get(rawg_gameid=id)
+        return JsonResponse({'log':'Item Already in Library'})
+    except Game.DoesNotExist:
+        pass
+
     #debugging print statements
     print('###############################')
 
@@ -142,4 +150,11 @@ def rawg(request,gameID):
 
 
     return JsonResponse({'log':'Item Saved Successfully'})
-    return HttpResponse("You're looking at question %s." % name)
+
+def rawg_library(request):
+
+    game_list = requests.get(('https://api.rawg.io/api/games'),params={'key':config('RAWG_KEY')}).json()
+
+    return render(request, "games.html", {
+        'all_games':game_list
+    })

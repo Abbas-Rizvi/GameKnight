@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block js %}
 {% load static %}
-<script src="{% static 'js/jquery.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
+{% block js %}
+<script src="{% static 'js/jquery.min.jsm.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> -->
 {% endblock %}
 
 
@@ -14,9 +15,52 @@
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">GameKnight</h1>
         <p class="col-md-8 fs-4">Video Game Library Database</p>
-        <!-- <button class="btn btn-primary btn-lg" type="button">Example button</button> -->
+
       </div>
   </div>
+
+  
+
+  <div class="container py-2">
+    <div class="btn-group">
+
+
+
+      <button type="button" class=" mx-5 btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Action
+      </button>
+      
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+      </div>
+
+      <button type="button" class="mx-5 btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Platform
+        </button>
+        
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+
+    </div>
+  </div>
+
+
+
+
+
+  </div>
+
+
+
 
 
   <!-- table -->
@@ -30,10 +74,21 @@
           <th scope="col">Image</th>
         </tr>
       </thead>
+
       <tbody id="game_table_data">
-      
+        {% for game in allgames %}
+          <tr>
+            <td>{{ game.game_id }}</td>            
+            <td><a href="../game/{{ game.game_id }}">{{ game.name }}</a></td>            
+            <td>{{ game.release_date }}</td>            
+            <td><img src="{{ game.game_img }}"></td>            
+          </tr>
+        {% endfor %}
+
       </tbody>
   </table>
+
+
 
 {% endblock %}    
 

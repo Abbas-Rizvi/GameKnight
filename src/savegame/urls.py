@@ -5,5 +5,6 @@ from . import views
 
 
 urlpatterns = [
-    path('<int:gameID>/', views.rawg),
+    path('save/<int:gameID>/', views.rawg),
+    path('games/', views.rawg_library)
 ]

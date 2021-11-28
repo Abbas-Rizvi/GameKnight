@@ -11,8 +11,13 @@
 <div id="head" class="p-5 mb-4 bg-light rounded-3">
     <div class="container-fluid">
 
-      <!-- ---------- release --------- -->
+      <!-- ---------- Developer --------- -->
       <div class="container-fluid ">
+        <h4>Developer:<span style="color:black"> {{ game.fk_dev.dev_name }}</span> </h4>
+      </div>
+
+      <!-- ---------- release --------- -->
+      <div class="container-fluid py-3">
         <h4>Release Date:<span style="color:black"> {{ game.release_date }}</span> </h4>
       </div>
 
@@ -27,22 +32,22 @@
         <h3>Tags</h3>
           {% for tag in tags %}
             <div style="font-size: large;" class="badge badge-primary">{{ tag.tag }}</div>
-            {% endfor %}
-         </div>
+          {% endfor %}
+      </div>
 
       <!-- ----------GENRES --------- -->
       <div class="container-fluid py-3">
         <h3>Genres</h3>
-          {% for val in genres.values %}
-            <div style="font-size: large;" class="badge badge-info">{{ val }}</div>
+          {% for entry in genres %}
+            <div style="font-size: large;" class="badge badge-info">{{ entry.genre_name }}</div>
           {% endfor %}
       </div>
   
       <!-- ---------- PLATFORMS --------- -->
         <div class="container-fluid py-3">
           <h3>Platforms</h3>
-            {% for val in platforms.values %}
-              <div style="font-size: large;" class="badge badge-secondary">{{ val }}</div>
+            {% for entry in platforms %}
+              <div style="font-size: large;" class="badge badge-secondary">{{ entry.name }}</div>
             {% endfor %}
         </div>     
 
