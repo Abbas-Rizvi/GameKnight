@@ -2,7 +2,7 @@ from django.shortcuts import render
 from library.models import Game, GenreAssociated, HasTags,Genre, Platform, PlayedOn, Developers
 from django.http import Http404
 from django.forms.models import model_to_dict
-
+from django.db.models import Q
 # individual game pages
 # checks game_id for 
 def game_details(request,gameID):
@@ -37,10 +37,37 @@ def game_details(request,gameID):
 
 # home page render request
 def home(request):
-    
-    allgames = Game.objects.all()
+    genre = request.GET.get('genre')
+    platform = request.GET.get('platform')
+    developer = request.GET.get('developer')
+    search = request.GET.get('search')
 
+    
+    if search == None or "":
+        allgames = Game.objects.all()
+    else:
+        allgames = Game.objects.all().filter(Q(name__icontains=search))
+
+    if genre == None or genre == "0":
+        pass
+    else:
+        allgames = allgames.filter(genreassociated__fk_genre=genre)
+
+
+    if platform == None or platform == "0":
+        pass
+    else:
+        allgames = allgames.filter(playedon__fk_plat=platform)
+
+    print(platform)
+
+
+    genres = Genre.objects.all()
+    platforms = Platform.objects.all()
+   
 
     return render(request, "home.html", {
-        'allgames':allgames
+        'allgames':allgames,
+        'genres':genres,
+        'platforms':platforms
     })

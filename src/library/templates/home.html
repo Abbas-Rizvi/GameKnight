@@ -22,46 +22,38 @@
   
 
   <div class="container py-2">
-    <div class="btn-group">
+    <form class="form-inline" action="/library/home/" method="get">
 
 
+      <select name="genre" class="form-select mx-4" aria-label="Default select example">
+        <option value="0" selected value>Select Genre</option>
+        {% for genre in genres %}
+          <option value="{{ genre.genre_id }}">{{ genre.genre_name }}</option>
+        {% endfor %}
+      </select>
 
-      <button type="button" class=" mx-5 btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Action
-      </button>
-      
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+      <select name="platform" class="form-select mx-4" aria-label="Default select example">
+        <option selected value="0">Select Platform</option>
+
+        {% for platform in platforms %}
+          <option value="{{ platform.plat_id }}">{{ platform.name }}</option>
+        {% endfor %}
+
+      </select>
+
+      <div class="form-group mx-4">
+        <label for="email">Search: </label>
+        <input type="search" class="form-control" id="search" name="search">
       </div>
 
-      <button type="button" class="mx-5 btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Platform
-        </button>
-        
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
+      <button class="btn btn-primary" type="submit">Submit form</button>
+      
 
-    </div>
+    </form>
   </div>
 
 
-
-
-
   </div>
-
-
-
-
 
   <!-- table -->
   <!-- ---------------------------------------------------- -->
@@ -71,6 +63,7 @@
           <th scope="col">Game #</th>
           <th scope="col">Game Name</th>
           <th scope="col">Release Date</th>
+          <th scope="col">Metacritic</th>
           <th scope="col">Image</th>
         </tr>
       </thead>
@@ -80,7 +73,8 @@
           <tr>
             <td>{{ game.game_id }}</td>            
             <td><a href="../game/{{ game.game_id }}">{{ game.name }}</a></td>            
-            <td>{{ game.release_date }}</td>            
+            <td>{{ game.release_date }}</td>
+            <td>{{ game.metacritic_score }}</td>
             <td><img src="{{ game.game_img }}"></td>            
           </tr>
         {% endfor %}

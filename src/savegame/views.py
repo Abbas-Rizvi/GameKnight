@@ -152,8 +152,13 @@ def rawg(request,gameID):
     return JsonResponse({'log':'Item Saved Successfully'})
 
 def rawg_library(request):
+    search = request.GET.get('search')
 
-    game_list = requests.get(('https://api.rawg.io/api/games'),params={'key':config('RAWG_KEY')}).json()
+    if search == None or search == "":
+        game_list = requests.get(('https://api.rawg.io/api/games'),params={'key':config('RAWG_KEY')}).json()
+    else:
+        game_list = requests.get(('https://api.rawg.io/api/games'),params={'key':config('RAWG_KEY'),'search':search}).json()
+
 
     return render(request, "games.html", {
         'all_games':game_list

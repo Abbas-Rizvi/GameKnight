@@ -1,5 +1,29 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block js %}
+<script src="{% static 'js/jquery.min.jsm.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+
+function addGame(gameID){
+  $.ajax({
+        method:'GET',
+        url:'http://127.0.0.1:8000/rawg/save/' + gameID,
+        success:function(response){
+            var log=response;
+            console.log(log);
+            alert(log['log'])
+        }
+      })
+    }
+
+</script>
+
+{% endblock %}
+
+
 
 {% block content %}
   <!-- jumbotron -->
@@ -11,6 +35,19 @@
       </div>
   </div>
 
+<div class="container py-3">
+
+  <form class="form" action="/rawg/games/" method="get">
+    <div class="input-group">
+      <input name="search" type="text" class="form-control" placeholder="Search for Game">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
 
 <div class="container-fluid">
   {% for game in all_games.results %}
@@ -20,7 +57,8 @@
                 <img class="card-img-top" src="{{ game.background_image }}" alt="">
                 <div class="card-body">
                   <h5 class="card-title">{{ game.name }}</h5>
-                  <a class="btn btn-primary" style="font-size: small;" href="/rawg/save/{{ game.id }}" role="button">Add to Library</a>                
+                  <a class="btn btn-primary" onClick="addGame({{ game.id }})"   style="font-size: small;" role="button">Add to Library</a>                
+                  <!-- <a class="btn btn-primary" style="font-size: small;" href="/rawg/save/{{ game.id }}" role="button">Add to Library</a>                 -->                  
                 </div>
             </div><!-- card -->
         </div><!-- col-md-4 -->
