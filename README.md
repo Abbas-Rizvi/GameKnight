@@ -87,18 +87,27 @@ The application should now be available at: `http://127.0.0.1:8000/library/home`
 
 ### Home/Library 
 
-![Home Page]()
+![Home Page](https://github.com/JadEletry/GameKnight/blob/main/img/game_knight_home.png?raw=true)
 
 The Library page allows users to view their saved games in table format. Users can also filter through their saved games through a combination of genre, platform and search selections. Users can then access the linked game details page which provides further detail about a single game.
 
 ### Game Details
 
-![Details Page]()
+![Details Page](https://github.com/JadEletry/GameKnight/blob/main/img/game_knight_details.png?raw=true)
 
 The details page provides details about a single game with items such as the associated tags, genres and platforms. Users can also access a detailed description about the selected game.
 
 ### Save Game
 
-![Save Page]()
+![Save Page](https://github.com/JadEletry/GameKnight/blob/main/img/game_knight_save.png?raw=true)
 
 The save game page links to the external RAWG API to find and list games. Users can select games to add to their library either through the main page or using the search function implemnented through RAWG API.
+
+### API
+
+GameKnight also provides an API which can be used to retrieve information regarding your library in a standard REST format via Django Rest Framework
+
+This can be accessed at `http://127.0.0.1:8000/api/game`  
+
+information regarding a specific game can be found at `http://127.0.0.1:8000/api/game/GAME_ID`, where `GAME_ID` is the id for the requested game
+
